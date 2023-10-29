@@ -1,0 +1,30 @@
+.wrapper {
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.game-container {
+    width: 500px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: 33.3% 33.3% 33.3%;
+    row-gap: 2px;
+    column-gap: 2px;
+}
+
+.field-container{
+    background-color: red;
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-container {
+    display: block;
+}

@@ -1,0 +1,5 @@
+1. Connect and upgrade to ws 
+2. Create Game-session that can be joined
+3. Create join-function to join an exisiting Game-session
+4. Send game-updates
+5. Implement Frontend
