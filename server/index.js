@@ -1,7 +1,5 @@
 const ws = require("ws");
 const http = require("http");
-const { Session } = require("inspector");
-const { nextTick } = require("process");
 const server = http.createServer();
 const uuidv4 = require("uuid").v4
 
@@ -122,6 +120,6 @@ const isValidRequest = (data) => {
 }
 
 
-server.listen(3000, () => {
-    console.log("Listening on Port 3000");
+server.listen(process.env.PORT, () => {
+    console.log("Listening on Port " + process.env.PORT);
 })
