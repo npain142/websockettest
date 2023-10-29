@@ -9,6 +9,7 @@ let client_id;
 
 let sess_id = document.getElementById("session_id");
 let username = document.getElementById("username");
+document.getElementById("btn-join").onclick = buildupCon();
 
 function buildupCon() {
     ws = new WebSocket("ws://localhost:3000", ["json"]);
