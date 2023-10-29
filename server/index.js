@@ -1,17 +1,10 @@
 const ws = require("ws");
 const http = require("http");
-
+const server = http.createServer()
 const uuidv4 = require("uuid").v4
-const express = require("express");
-const server = express();
+
 const wss = new ws.WebSocketServer({server});
 
-server.use(express.static(__dirname));
-
-
-server.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
-});
 
 
 
@@ -58,7 +51,7 @@ wss.on("connection", (connection) => {
                         }
                         connection.send(JSON.stringify(tmp));
                         
-                        if (s.clients.length == 1) {
+                        if (s.clients.length == 2) {
                             startGame(connection);
                         }
                         console.log(sessions);
