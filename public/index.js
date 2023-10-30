@@ -13,7 +13,7 @@ let username = document.getElementById('username');
 // eslint-disable-next-line no-unused-vars
 function buildupCon() {
 	// set in browser local storage "use-dev" to use local dev environment
-	const baseUrl = localStorage.getItem('use-dev') ? 'ws://localhost:3000' : 'ws://daniel-feustel.de';
+	const baseUrl = localStorage.getItem('use-dev') ? 'ws://localhost:3000/ws' : 'ws://daniel-feustel.de';
 	// const baseUrl = 'ws://localhost:3000';
 	ws = new WebSocket(baseUrl, ['json']);
 	ws.onopen = () => {

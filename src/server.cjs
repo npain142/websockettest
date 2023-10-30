@@ -1,16 +1,18 @@
 const ws = require('ws');
 const http = require('http');
-const server = http.createServer();
+const express = require('express')
+const app = express();
 const uuidv4 = require('uuid').v4;
 
 // noinspection JSUnusedLocalSymbols
 const z = require('zod');
-const { CommandResponseSchema, CommandRequestSchema } = require('./model');
+const { CommandResponseSchema, CommandRequestSchema } = require('./model.cjs');
+const {json} = require("express");
 
 /**
  * @type {WebSocket.Server<typeof WebSocket.WebSocket, IncomingMessage>}
  */
-const wss = new ws.WebSocketServer({ server });
+const wss = new ws.WebSocketServer({ noServer: true, path: "/ws" });
 
 const clients = {};
 const sessions = [
@@ -130,6 +132,25 @@ function startGame(connection) {
 	sendMessage(connection, { method: 'turn' });
 }
 
-server.listen(3000, () => {
+app.use(json());
+// todo(REST): set up route to create session with password and return a sessionId
+// todo(REST): set up route to get all sessions
+// todo(REST): set up route to connect to session and return a clientId
+// todo(REST): set up route to delete sessions
+// todo(invalidate sessions): implement health checks to close connections after a period of time
+app.get("/connect", (req, res) => {
+	console.log("connecting")
+	res.send("hello world")
+})
+
+const server = app.listen(3000, () => {
 	console.log('Listening on Port ' + 3000);
+});
+
+
+server.on('upgrade', (request, socket, head) => {
+	console.log("upgrade")
+	wss.handleUpgrade(request, socket, head, socket => {
+		wss.emit('connection', socket, request);
+	});
 });
