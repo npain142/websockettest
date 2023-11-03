@@ -51,6 +51,7 @@ function buildupCon() {
 
 
 
+
 for (let i = 0; i < fields.length; i++) {
     fields[i].onclick = () => {
         if (turn) {
